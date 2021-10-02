@@ -1,5 +1,5 @@
 import { Browser, Page, PuppeteerNode } from "puppeteer";
-import { PuppeteerRequest } from './interfaces/puppeteer-request';
+import { PuppeteerRequest } from '../interfaces/puppeteer-request';
 
 const puppeteer: PuppeteerNode = require('puppeteer');
 
