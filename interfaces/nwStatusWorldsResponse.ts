@@ -1,14 +1,11 @@
 export interface NWStatusResponse {
 	data: {
 		message: {
-			worlds: [
-				{
-					name: string,
-					type: string,
-					serialized_type: string,
-					identifier: string
-				}
-			]
+			players_current: number,
+			players_maximum: number,
+			queue_current: number,
+			queue_wait_time_minutes: number,
+			status_enum: string
 		}
 	}
 }
