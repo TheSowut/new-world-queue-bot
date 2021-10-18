@@ -93,11 +93,13 @@ var NWQueueBot = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.axios.get(endpoints_1.ENDPOINTS.NEW_WORLD_STATUS + "/" + worldName, this.config)
                             .then(function (res) {
                             var response = res.data.message;
+                            console.log('response:', res.data);
                             var worldNameCapitalized = _this.capitalizeName(worldName);
                             return response.players_current < response.players_maximum
                                 ? worldNameCapitalized + " has " + response.players_current + " active players out of " + response.players_maximum + "."
                                 : worldNameCapitalized + " is currently FULL with " + response.queue_current + " players waiting. Current waiting time is " + response.queue_wait_time_minutes + " minutes.";
                         })["catch"](function (err) {
+                            console.log('err', err);
                             console.error(err.response.statusText);
                             return "Server " + worldName + " not found!";
                         })];

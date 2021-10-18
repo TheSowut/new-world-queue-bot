@@ -52,6 +52,7 @@ class NWQueueBot {
 					: `${worldNameCapitalized} is currently FULL with ${response.queue_current} players waiting. Current waiting time is ${response.queue_wait_time_minutes} minutes.`
 			})
 			.catch((err: any) => {
+				console.log('err', err);
 				console.error(err.response.statusText);
 				return `Server ${worldName} not found!`
 			})
