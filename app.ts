@@ -45,6 +45,7 @@ class NWQueueBot {
 		return await this.axios.get(`${ENDPOINTS.NEW_WORLD_STATUS}/${worldName}`, this.config)
 			.then((res: NWStatusResponse) => {
 				const response: WorldInfo = res.data.message;
+				console.log('response:', res.data)
 				const worldNameCapitalized: string = this.capitalizeName(worldName);
 				return response.players_current < response.players_maximum
 					? `${worldNameCapitalized} has ${response.players_current} active players out of ${response.players_maximum}.`
