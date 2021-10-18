@@ -23,6 +23,8 @@ class NWQueueBot {
 			console.log(`Logged in as ${this.client.user!.tag}`);
 		})
 
+		console.log(process.env.TOKEN);
+		console.log(process.env.NW_BEARER);
 		this.client.on(DISCORD_EVENTS.MESSAGE, async (msg: Message) => {
 			// Early return which will prevent the bot from replying to himself.
 			if (msg.author.id in [this.client.user?.id]) return;
