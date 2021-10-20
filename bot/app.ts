@@ -42,13 +42,9 @@ class NWQueueBot {
 	 * @returns NWStatusResponse
 	 */
 	private async getWorld(worldName: string): Promise<string> {
-		return await this.axios.get('https://jsonplaceholder.typicode.com/todos/5')
-			.then((res: any) => {
-				console.log(res.data);
-				return res.data;
-			});
 		return await this.axios.get(`${ENDPOINTS.NEW_WORLD_STATUS}/${worldName}`, this.config)
 			.then((res: NWStatusResponse) => {
+				return res.data.message;
 				const response: WorldInfo = res.data.message;
 				console.log('response:', res.data)
 				const worldNameCapitalized: string = this.capitalizeName(worldName);
