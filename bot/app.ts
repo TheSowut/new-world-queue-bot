@@ -1,12 +1,12 @@
 import { Client, Message } from "discord.js";
-import { DISCORD_EVENTS } from './enums/events';
-import { MESSAGE } from './enums/message';
-import { ENDPOINTS } from './enums/endpoints';
-import { NWStatusResponse } from './interfaces/nwStatusWorldsResponse';
-import { WorldInfo } from "./interfaces/world";
+import { DISCORD_EVENTS } from '../enums/events';
+import { MESSAGE } from '../enums/message';
+import { ENDPOINTS } from '../enums/endpoints';
+import { NWStatusResponse } from '../interfaces/nwStatusWorldsResponse';
+import { WorldInfo } from "../interfaces/world";
 
 // Load the .env file from the root directory.
-require('dotenv').config({ path: '.env' });
+require('dotenv').config({ path: '../.env' });
 class NWQueueBot {
 	private discord = require('discord.js');
 	private client: Client = new this.discord.Client();
@@ -42,6 +42,11 @@ class NWQueueBot {
 	 * @returns NWStatusResponse
 	 */
 	private async getWorld(worldName: string): Promise<string> {
+		return await this.axios.get('https://jsonplaceholder.typicode.com/todos/5')
+			.then((res: any) => {
+				console.log(res.data);
+				return res.data;
+			});
 		return await this.axios.get(`${ENDPOINTS.NEW_WORLD_STATUS}/${worldName}`, this.config)
 			.then((res: NWStatusResponse) => {
 				const response: WorldInfo = res.data.message;
