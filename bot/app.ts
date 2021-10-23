@@ -44,16 +44,13 @@ class NWQueueBot {
 	private async getWorld(worldName: string): Promise<string> {
 		return await this.axios.get(`${ENDPOINTS.NEW_WORLD_STATUS}/${worldName}`, this.config)
 			.then((res: NWStatusResponse) => {
-				return res.data.message;
 				const response: WorldInfo = res.data.message;
-				console.log('response:', res.data)
 				const worldNameCapitalized: string = this.capitalizeName(worldName);
 				return response.players_current < response.players_maximum
 					? `${worldNameCapitalized} has ${response.players_current} active players out of ${response.players_maximum}.`
 					: `${worldNameCapitalized} is currently FULL with ${response.queue_current} players waiting. Current waiting time is ${response.queue_wait_time_minutes} minutes.`
 			})
 			.catch((err: any) => {
-				console.log('err', err);
 				console.error(err.response.statusText);
 				return `Server ${worldName} not found!`
 			})
