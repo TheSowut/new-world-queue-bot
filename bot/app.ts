@@ -4,6 +4,7 @@ import { MESSAGE } from '../enums/message';
 import { ENDPOINTS } from '../enums/endpoints';
 import { NWStatusResponse } from '../interfaces/nwStatusWorldsResponse';
 import { WorldInfo } from "../interfaces/world";
+import { NWErrorResponse } from "../interfaces/nwErrorResponse";
 
 // Load the .env file from the root directory.
 require('dotenv').config({ path: '../.env' });
@@ -50,7 +51,7 @@ class NWQueueBot {
 					? `${worldNameCapitalized} has ${response.players_current} active players out of ${response.players_maximum}.`
 					: `${worldNameCapitalized} is currently FULL with ${response.queue_current} players waiting. Current waiting time is ${response.queue_wait_time_minutes} minutes.`
 			})
-			.catch((err: any) => {
+			.catch((err: NWErrorResponse) => {
 				console.error(err.response.statusText);
 				return `Server ${worldName} not found!`
 			})
@@ -59,7 +60,7 @@ class NWQueueBot {
 	/**
 	 * Capitalize a World Name.
 	 * @param name
-	 * @returns
+	 * @returns string
 	 */
 	private capitalizeName(name: string): string {
 		return name.charAt(0).toUpperCase() + name.slice(1, name.length);
