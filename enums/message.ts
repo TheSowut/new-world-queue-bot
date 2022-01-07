@@ -1,3 +1,3 @@
 export enum MESSAGE {
-	QUEUE = "queue"
+    QUEUE = "queue"
 }

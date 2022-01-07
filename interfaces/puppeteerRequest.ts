@@ -1,5 +1,5 @@
 export interface PuppeteerRequest {
-	url: string,
-	xpath: string,
-	prop: string
+    url: string,
+    xpath: string,
+    prop: string
 }
